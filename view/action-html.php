@@ -1,9 +1,9 @@
 <span style="display:none;" class="ghh-hook ghh-hook-<?php echo $args['type'] ?> <?php echo ( $nested_hooks ) ? 'ghh-hook-has-hooks' : ''; ?>">
 
 	<?php if ( 'action' == $args['type'] ) : ?>
-		<span class="ghh-hook-type ghh-hook-type"><?php _e( 'A', 'give-hook-helper' ); ?></span>
+		<span class="ghh-hook-type"><?php _e( 'A', 'give-hook-helper' ); ?></span>
 	<?php elseif ( 'filter' == $args['type'] ) : ?>
-		<span class="ghh-hook-type ghh-hook-type"><?php _e( 'F', 'give-hook-helper' ); ?></span>
+		<span class="ghh-hook-type"><?php _e( 'F', 'give-hook-helper' ); ?></span>
 	<?php endif; ?>
 
 	<?php
