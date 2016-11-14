@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Give - Hook Helper
  * Plugin URI:
- * Description: The most robust, flexible, and intuitive way to accept donations on WordPress.
+ * Description: View all hooks on screen which fired for current screen.
  * Author: Ravinder Kumar
  * Author URI: https://ravinder.me
  * Version:
