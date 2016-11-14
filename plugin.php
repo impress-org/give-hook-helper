@@ -500,6 +500,20 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			<?php
 		}
 
+		/**
+		 * Check if hook is from Give plugin or not.
+		 *
+		 * @since  1.0
+		 * @access private
+		 *
+		 * @param $hook
+		 *
+		 * @return bool|int
+		 */
+		private function is_give_plugin_hooks( $hook ) {
+			return strpos( $hook['ID'], 'give_' );
+		}
+
 	}
 
 	Give_Hook_Helper::get_instance()->init();
