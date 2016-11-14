@@ -78,7 +78,7 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		/**
 		 * Construct and initialize the main plugin class
 		 */
-		public function __construct() {
+		private function __construct() {
 		}
 
 
