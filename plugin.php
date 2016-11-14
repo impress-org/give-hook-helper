@@ -447,13 +447,25 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		 */
 		private function is_give_plugin_hooks( $hook ) {
 			$hook_name = is_array( $hook ) ? $hook['ID'] : $hook;
+
 			return strpos( $hook_name, 'give_' );
 		}
 
+	}
+endif;
+
+/**
+ * Initialize plugin.
+ */
+function give_hook_helper_init() {
+	// Bailout: Check if Give plugin is activae or not.
+	if ( ! class_exists( 'Give' ) ) {
+		return;
 	}
 
 	Give_Hook_Helper::get_instance()
 	                ->setup_params()
 	                ->setup_hooks();
+}
 
-endif;
+add_action( 'plugins_loaded', 'give_hook_helper_init', 9999 );
