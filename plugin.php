@@ -31,9 +31,17 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 		private $doing = 'collect';
 
+		/**
+		 * Construct and initialize the main plugin class
+		 */
+		public function __construct() {
+		}
+
 
 		/**
-		 *  Instancd initiator
+		 * Instance initiator
+		 *
+		 * @since 1.0
 		 */
 		public static function get_instance() {
 
@@ -46,16 +54,9 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			return $instance;
 		}
 
-		/**
-		 * Construct and initialize the main plugin class
-		 */
-
-		public function __construct() {
-		}
-
 
 		/**
-		 *
+		 * @since 1.0
 		 */
 		public function init() {
 
@@ -153,7 +154,11 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			) );
 		}
 
-		// Custom css to add icon to admin bar edit button.
+		/**
+		 * Custom css to add icon to admin bar edit button.
+		 *
+		 * @since 1.0
+		 */
 		function add_builder_edit_button_css() {
 			?>
 			<style>
@@ -166,7 +171,7 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			<?php
 		}
 
-		/*
+		/**
 		 * Notification Switch
 		 * Displays notification interface that will alway display
 		 * even if the interface is corrupted in other places.
@@ -180,6 +185,9 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			<?php
 		}
 
+		/**
+		 * @return bool
+		 */
 		function wp_init() {
 
 			// Restrict use to Admins only
@@ -213,8 +221,9 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 		/**
 		 * Enqueue Scripts
+		 *
+		 * @since 1.0
 		 */
-
 		public function enqueue_script() {
 
 			global $wp_scripts, $current_screen;
@@ -237,14 +246,17 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 		/**
 		 * Localization
+		 *
+		 * @since 1.0
 		 */
-
 		public function load_translation() {
 			load_plugin_textdomain( 'give-hook-helper', false, dirname( plugin_basename( __FILE__ ) ) . '/localization/' );
 		}
 
 		/**
 		 * Render Head Hooks
+		 *
+		 * @since 1.0
 		 */
 		function render_head_hooks() {
 
@@ -260,6 +272,8 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 		/**
 		 * Render all hooks already in the collection
+		 *
+		 * @since 1.0
 		 */
 		function render_hooks() {
 
@@ -273,8 +287,12 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 		/**
 		 * Hook all hooks
+		 *
+		 * @since   1.0
+		 * @access  public
+		 *
+		 * @param $hook
 		 */
-
 		public function hook_all_hooks( $hook ) {
 
 			global $wp_actions, $wp_filter;
@@ -331,7 +349,7 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		 * Render action
 		 */
 		function render_action( $args = array() ) {
-			if( false === $this->is_give_plugin_hooks( $args ) ) {
+			if ( false === $this->is_give_plugin_hooks( $args ) ) {
 				return;
 			}
 
@@ -480,7 +498,7 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 				<?php
 				foreach ( $this->all_hooks as $va_nested_value ) {
 
-					if( false === $this->is_give_plugin_hooks( $va_nested_value ) ) {
+					if ( false === $this->is_give_plugin_hooks( $va_nested_value ) ) {
 						continue;
 					}
 
