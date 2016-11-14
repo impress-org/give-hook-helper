@@ -1,5 +1,5 @@
 
-.ssh-hook {
+.ghh-hook {
 	position: relative;
 	clear: both;
 	width: auto !important;
@@ -24,17 +24,17 @@
 	white-space: nowrap !important;
 	box-sizing: initial !important;
 }
-.ssh-hook.ssh-hook-action {
+.ghh-hook.ghh-hook-action {
 	background: #D1E8E0 !important;
 	color: #2E2E2E !important;
 	box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 1px rgba(0, 0, 0, 0.05) !important;
 }
-.ssh-hook.ssh-hook-filter {
+.ghh-hook.ghh-hook-filter {
 	background: #E8D8D3 !important;
 	color: #3A2D2D !important;
 	box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 1px rgba(0, 0, 0, 0.05) !important;
 }
-.ssh-hook .ssh-hook-type{
+.ghh-hook .ghh-hook-type{
 	background: rgba(0, 0, 0, 0.13) !important;
 	border-radius: 30px !important;
 	min-width: 11px !important;
@@ -47,37 +47,37 @@
 	margin: 0px !important;
 	float: none !important;
 }
-.ssh-hook.ssh-hook-action .ssh-hook-type{
+.ghh-hook.ghh-hook-action .ghh-hook-type{
 	background: rgba(0, 0, 0, 0.2) !important;
 	color: rgba(199, 255, 212, 1) !important;
 }
-.ssh-hook.ssh-hook-filter .ssh-hook-type{
+.ghh-hook.ghh-hook-filter .ghh-hook-type{
 	background: rgba(0, 0, 0, 0.15) !important;
 	color: #F4E1E1 !important;
 }
-.ssh-hook.ssh-hook-action.ssh-hook-has-hooks .ssh-hook-type{
+.ghh-hook.ghh-hook-action.ghh-hook-has-hooks .ghh-hook-type{
 	background: rgba(0, 0, 0, 0.2) !important;
 	color: #4DCCA8 !important;
 }
-.ssh-hook.ssh-hook-filter.ssh-hook-has-hooks .ssh-hook-type{
+.ghh-hook.ghh-hook-filter.ghh-hook-has-hooks .ghh-hook-type{
 	background: rgba(0, 0, 0, 0.25) !important;
 	color: rgba(196, 131, 131, 1) !important;
 }
-.ssh-hook.ssh-hook-has-hooks {
+.ghh-hook.ghh-hook-has-hooks {
 	cursor: pointer;
 }
-.ssh-hook.ssh-hook-action.ssh-hook-has-hooks {
+.ghh-hook.ghh-hook-action.ghh-hook-has-hooks {
 	background: #34B08D !important;
 	color: #F6F6F6 !important;
 	box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 1px rgba(0, 0, 0, 0.17) !important;
 }
-.ssh-hook.ssh-hook-filter.ssh-hook-has-hooks {
+.ghh-hook.ghh-hook-filter.ghh-hook-has-hooks {
 	background: #AB325B !important;
 	box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 1px rgba(0, 0, 0, 0.17) !important;
 	color: #FFF !important;
 }
 
-.ssh-hook .ssh-hook-count {
+.ghh-hook .ghh-hook-count {
 	float:none !important;
 	min-width: 14px !important;
 	min-height:0 !important;
@@ -98,7 +98,7 @@
 	color: rgba(255, 255, 255, 0.95) !important;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2) !important;
 }
-.ssh-hook .ssh-hook-dropdown {
+.ghh-hook .ghh-hook-dropdown {
 	position: absolute;
 	z-index: 100000;
 	line-height: 12px;
@@ -116,7 +116,7 @@
 	overflow: visible !important;
 	top: 100%;
 }
-.ssh-hook .ssh-hook-dropdown:after {
+.ghh-hook .ghh-hook-dropdown:after {
 	display:block;
 	content:'';
 	width: 0;
@@ -131,7 +131,7 @@
 	left: 30px;
 	opacity: 1 !important;
 }
-.ssh-hook .ssh-hook-dropdown:before {
+.ghh-hook .ghh-hook-dropdown:before {
 	display:block;
 	content:'';
 	width: 0;
@@ -146,8 +146,8 @@
 	margin-left:-1px;
 	left: 30px;
 }
-.ssh-hook ul.ssh-hook-dropdown {}
-.ssh-hook ul.ssh-hook-dropdown li span.ssh-function-string {
+.ghh-hook ul.ghh-hook-dropdown {}
+.ghh-hook ul.ghh-hook-dropdown li span.ghh-function-string {
 	position: relative;
 	width: auto !important;
 	float: none !important;
@@ -168,17 +168,17 @@
 	transition: .5s !important;
 	white-space: nowrap !important;
 }
-.ssh-hook.ssh-hook-filter ul.ssh-hook-dropdown li span.ssh-function-string {
+.ghh-hook.ghh-hook-filter ul.ghh-hook-dropdown li span.ghh-function-string {
 	box-shadow: 0px 1px 0 rgba(255, 255, 255, 0.2) inset, 0px 1px 1px rgba(0, 0, 0, 0.2) !important;
 	background: #AB325B !important;
 }
-.ssh-hook ul.ssh-hook-dropdown li span:before {
+.ghh-hook ul.ghh-hook-dropdown li span:before {
 	display: none !important;
 }
-.ssh-hook ul.ssh-hook-dropdown li span:after {
+.ghh-hook ul.ghh-hook-dropdown li span:after {
 	display:none !important;
 }
-.ssh-hook ul.ssh-hook-dropdown li {
+.ghh-hook ul.ghh-hook-dropdown li {
 	display:block;
 	padding: 2px 0 2px 0;
 	position: relative;
@@ -188,7 +188,7 @@
 	width: auto !important;
 	float: none !important;
 }
-.ssh-hook ul.ssh-hook-dropdown li.ssh-hook-heading {
+.ghh-hook ul.ghh-hook-dropdown li.ghh-hook-heading {
 	padding: 1px 0;
 	background: rgba(231, 231, 231, 0.46);
 	margin: 10px 0 20px;
@@ -197,14 +197,14 @@
 	border: 1px solid rgba(0, 0, 0, 0.07);
 	border-radius: 3px;
 }
-.ssh-hook ul.ssh-hook-dropdown li.ssh-priority {
+.ghh-hook ul.ghh-hook-dropdown li.ghh-priority {
 	display:block;
 	height: 1px;
 	padding:0;
 	margin: 16px 0 10px;
 	border-bottom: 1px solid #F4F4F4;
 }
-.ssh-hook ul.ssh-hook-dropdown li span.ssh-priority-label {
+.ghh-hook ul.ghh-hook-dropdown li span.ghh-priority-label {
 	display: inline-block;
 	background: #FFFFFF;
 	border-radius: 50px;
@@ -218,16 +218,16 @@
 	top: -7px;
 	left: 0px;
 }
-.ssh-hook ul.ssh-hook-dropdown li span.ssh-priority-label:after{
+.ghh-hook ul.ghh-hook-dropdown li span.ghh-priority-label:after{
 	content:"" !important;
 }
-.ssh-hook ul.ssh-hook-dropdown li span.ssh-priority-label:before{
+.ghh-hook ul.ghh-hook-dropdown li span.ghh-priority-label:before{
 	content:"" !important;
 }
-.ssh-hook ul.ssh-hook-dropdown li span.ssh-priority-label strong {
+.ghh-hook ul.ghh-hook-dropdown li span.ghh-priority-label strong {
 	font-weight:bold;
 }
-.ssh-hook ul.ssh-hook-dropdown li ul {
+.ghh-hook ul.ghh-hook-dropdown li ul {
 	display:none;
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2) inset, 0 2px 9px rgba(0, 0, 0, 0.21);
 	border-radius: 3px;
@@ -239,12 +239,12 @@
 	left: 15px;
 	pointer-events: none;
 }
-.ssh-hook ul.ssh-hook-dropdown li ul li {}
-.ssh-hook ul.ssh-hook-dropdown li:hover ul {
+.ghh-hook ul.ghh-hook-dropdown li ul li {}
+.ghh-hook ul.ghh-hook-dropdown li:hover ul {
 	display:block;
 }
 
-.ssh-collection-divider{
+.ghh-collection-divider{
 	/* background:red;
 */
 	margin: 1px 2px;
@@ -254,19 +254,19 @@
 }
 
 /*Pulse Animation*/
-@-webkit-keyframes ssh-pulse {
+@-webkit-keyframes ghh-pulse {
 0% {
 	opacity:0;
 } 100% {
 	opacity:1;
 } }
 
-.ssh-hook .ssh-hook-dropdown pre {}
-.ssh-hook:hover .ssh-hook-dropdown {
+.ghh-hook .ghh-hook-dropdown pre {}
+.ghh-hook:hover .ghh-hook-dropdown {
 	display:block !important;
 }
 
-.ssh-notification-switch {
+.ghh-notification-switch {
 	position: fixed;
 	background: rgb(35, 35, 35);
 	z-index: 100000;
@@ -281,13 +281,13 @@
 	top: 33px;
 	text-decoration: none;
 }
-.ssh-notification-switch:hover {
+.ghh-notification-switch:hover {
 	color:white;
 	text-decoration:none;
 }
-.ssh-notification-switch .ssh-notification-indicator {
+.ghh-notification-switch .ghh-notification-indicator {
 	background-color: #b7ed00;
-	-webkit-animation: ssh-pulse 1s infinite alternate;
+	-webkit-animation: ghh-pulse 1s infinite alternate;
 	width: 11px;
 	height: 11px;
 	display: inline-block;
@@ -296,23 +296,23 @@
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.24) inset, 0 -1px 0 rgba(0, 0, 0, 0.12) inset, 0 1px 0 rgba(0, 0, 0, 0.59);
 }
 
-.ssh-notification-switch .ssh-notification-button {
+.ghh-notification-switch .ghh-notification-button {
 	display: none;
 }
-.ssh-notification-switch:hover .ssh-notification-button {
+.ghh-notification-switch:hover .ghh-notification-button {
 	display: inline-block;
 	margin-right: -18px;
 	height: 33px;
 	line-height: 33px;
 	padding: 0 14px 0 11px;
 }
-.ssh-notification-switch .ssh-notification-button:hover {
+.ghh-notification-switch .ghh-notification-button:hover {
 	background: rgba(255, 255, 255, 0.11);
 }
 
-.ssh-hooks-on {}
+.ghh-hooks-on {}
 
-#wp-admin-bar-ssh-main-menu .ab-submenu .ab-item:before  {
+#wp-admin-bar-ghh-main-menu .ab-submenu .ab-item:before  {
 	line-height: 11px;
 	display:inline-block;
 	background-color: rgba(146, 146, 146, 1);
@@ -328,12 +328,12 @@
 	display: inline-block;
 	/* border: 2px solid #8B8B8B;
 */}
-#wp-admin-bar-ssh-main-menu .ab-submenu .ssh-hooks-on .ab-item:before {
+#wp-admin-bar-ghh-main-menu .ab-submenu .ghh-hooks-on .ab-item:before {
 	background-color: #b7ed00;
-	-webkit-animation: ssh-pulse 1s infinite alternate;
+	-webkit-animation: ghh-pulse 1s infinite alternate;
 }
 
-.ssh-nested-hooks-block {
+.ghh-nested-hooks-block {
 	display:none;
 	background: white;
 	position: fixed;
@@ -348,9 +348,9 @@
 	border-right: 1px solid rgba(0, 0, 0, 0.24);
 	padding: 3px;
 }
-.ssh-nested-hooks-block.ssh-active {
+.ghh-nested-hooks-block.ghh-active {
 	display:block;
 }
-.ssh-nested-hooks-block .ssh-hook {
+.ghh-nested-hooks-block .ghh-hook {
 	max-width: 380px;
 }
