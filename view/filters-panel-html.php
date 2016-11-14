@@ -3,10 +3,6 @@
 	<?php
 	foreach ( $this->all_hooks as $va_nested_value ) {
 
-		if ( false === $this->is_give_plugin_hooks( $va_nested_value ) ) {
-			continue;
-		}
-
 		if ( 'action' == $va_nested_value['type'] || 'filter' == $va_nested_value['type'] ) {
 			$this->render_action( $va_nested_value );
 		} else {

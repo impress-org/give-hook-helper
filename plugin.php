@@ -347,6 +347,10 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 			global $wp_actions, $wp_filter;
 
+			if( false === $this->is_give_plugin_hooks( $hook ) ) {
+				return;
+			}
+
 			if ( ! in_array( $hook, $this->recent_hooks ) ) {
 
 				if ( isset( $wp_actions[ $hook ] ) ) {
@@ -403,9 +407,6 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		 * @param array $args
 		 */
 		public function render_action( $args = array() ) {
-			if ( false === $this->is_give_plugin_hooks( $args ) ) {
-				return;
-			}
 
 			global $wp_filter;
 
@@ -445,7 +446,8 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		 * @return bool|int
 		 */
 		private function is_give_plugin_hooks( $hook ) {
-			return strpos( $hook['ID'], 'give_' );
+			$hook_name = is_array( $hook ) ? $hook['ID'] : $hook;
+			return strpos( $hook_name, 'give_' );
 		}
 
 	}
