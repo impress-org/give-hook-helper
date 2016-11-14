@@ -25,7 +25,7 @@
 	box-sizing: initial !important;
 }
 .ghh-hook.ghh-hook-action {
-	background: #D1E8E0 !important;
+	background: rgba(104, 187, 108, 0.3) !important;
 	color: #2E2E2E !important;
 	box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 1px rgba(0, 0, 0, 0.05) !important;
 }
@@ -67,7 +67,7 @@
 	cursor: pointer;
 }
 .ghh-hook.ghh-hook-action.ghh-hook-has-hooks {
-	background: #34B08D !important;
+	background: #68bb6c !important;
 	color: #F6F6F6 !important;
 	box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset, 0px 1px 1px rgba(0, 0, 0, 0.17) !important;
 }
@@ -164,7 +164,7 @@
 	line-height: 14px !important;
 	height: 17px !important;
 	padding: 1px 5px 0px !important;
-	background: #34B08D !important;
+	background: #68bb6c !important;
 	transition: .5s !important;
 	white-space: nowrap !important;
 }
