@@ -36,6 +36,14 @@
 			<ul class="ghh-hook-dropdown">
 				<li class="ghh-hook-heading">
 					<strong><?php echo $args['type'] ?>:</strong>&nbsp;<?php echo $args['ID']; ?>
+
+					<?php if ( isset( $this->deprecated_action_hooks[ $args['ID'] ] ) ) : ?>
+						<br><strong><?php _e( 'deprecated hook name', 'give-hook-helper' ) ?>
+							:</strong>&nbsp;<?php echo $this->deprecated_action_hooks[ $args['ID'] ]; ?>
+					<?php elseif ( isset( $this->deprecated_filter_hooks[ $args['ID'] ] ) ) : ?>
+						<br><strong><?php _e( 'deprecated hook name', 'give-hook-helper' ) ?>
+							:</strong>&nbsp;<?php echo $this->deprecated_filter_hooks[ $args['ID'] ]; ?>
+					<?php endif; ?>
 				</li>
 
 				<?php foreach ( $nested_hooks as $nested_key => $nested_value ) : ?>

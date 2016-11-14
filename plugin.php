@@ -76,6 +76,24 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		private $doing = 'collect';
 
 		/**
+		 * List of deprecated action hooks.
+		 *
+		 * @since  1.0
+		 * @access private
+		 * @var array array of hooks
+		 */
+		private $deprecated_action_hooks = array();
+
+		/**
+		 * List of deprecated filter hooks.
+		 *
+		 * @since  1.0
+		 * @access private
+		 * @var array array of hooks
+		 */
+		private $deprecated_filter_hooks = array();
+
+		/**
 		 * Construct and initialize the main plugin class
 		 */
 		private function __construct() {
@@ -110,6 +128,10 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			// Use this to set any tags known to cause display problems.
 			// Will be display in sidebar.
 			$this->ignore_hooks = apply_filters( 'ghh_ignore_hooks', array() );
+
+			// List of deprecated hooks.
+			$this->deprecated_action_hooks = give_deprecated_actions();
+			$this->deprecated_filter_hooks = give_deprecated_filters();
 
 			return self::$instance;
 		}
@@ -347,7 +369,7 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 			global $wp_actions, $wp_filter;
 
-			if( false === $this->is_give_plugin_hooks( $hook ) ) {
+			if ( false === $this->is_give_plugin_hooks( $hook ) ) {
 				return;
 			}
 
