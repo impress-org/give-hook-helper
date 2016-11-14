@@ -129,9 +129,15 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			// Will be display in sidebar.
 			$this->ignore_hooks = apply_filters( 'ghh_ignore_hooks', array() );
 
-			// List of deprecated hooks.
-			$this->deprecated_action_hooks = give_deprecated_actions();
-			$this->deprecated_filter_hooks = give_deprecated_filters();
+			// List of deprecated action hooks.
+			if( function_exists( 'give_deprecated_actions' ) ) {
+				$this->deprecated_action_hooks = give_deprecated_actions();
+			}
+
+			// List of deprecated filter hooks.
+			if( function_exists( 'give_deprecated_filters' ) ) {
+				$this->deprecated_filter_hooks = give_deprecated_filters();
+			}
 
 			return self::$instance;
 		}
