@@ -97,7 +97,7 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		/**
 		 * Admin Menu top bar
 		 *
-		 * @since 1.0
+		 * @since  1.0
 		 * @access public
 		 *
 		 * @param WP_Admin_Bar $wp_admin_bar
@@ -175,7 +175,7 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			?>
 			<a class="ghh-notification-switch" href="?ghh-hooks=off">
 				<span class="ghh-notification-indicator"></span>
-				<?php echo 'Hide Hooks'; // _e( 'Hide Hooks' , 'give-hook-helper' ) ?>
+				<?php _e( 'Hide Hooks', 'give-hook-helper' ) ?>
 			</a>
 			<?php
 		}
@@ -331,6 +331,9 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		 * Render action
 		 */
 		function render_action( $args = array() ) {
+			if( false === $this->is_give_plugin_hooks( $args ) ) {
+				return;
+			}
 
 			global $wp_filter;
 
@@ -476,6 +479,10 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			<div class="ghh-nested-hooks-block <?php echo ( 'show-filter-hooks' == $this->status ) ? 'ghh-active' : ''; ?> ">
 				<?php
 				foreach ( $this->all_hooks as $va_nested_value ) {
+
+					if( false === $this->is_give_plugin_hooks( $va_nested_value ) ) {
+						continue;
+					}
 
 					if ( 'action' == $va_nested_value['type'] || 'filter' == $va_nested_value['type'] ) {
 						$this->render_action( $va_nested_value );
