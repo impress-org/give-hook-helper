@@ -490,4 +490,4 @@ function give_hook_helper_init() {
 	                ->setup_hooks();
 }
 
-add_action( 'plugins_loaded', 'give_hook_helper_init', 9999 );
+add_action( 'plugins_loaded', 'give_hook_helper_init', 0 );
