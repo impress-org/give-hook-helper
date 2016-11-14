@@ -5,7 +5,7 @@
  * Description: View all hooks on screen which fired for current screen.
  * Author: Ravinder Kumar
  * Author URI: https://ravinder.me
- * Version:
+ * Version: 1.0
  * Text Domain:
  * Domain Path: /languages
  * GitHub Plugin URI:
@@ -21,14 +21,58 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 	class Give_Hook_Helper {
 
+		/**
+		 * Check hook output status.
+		 *
+		 * @since  1.0
+		 * @access private
+		 * @var array array of hooks
+		 */
 		private $status;
 
+		/**
+		 * List of hooks.
+		 *
+		 * @since  1.0
+		 * @access private
+		 * @var array array of hooks
+		 */
 		private $all_hooks = array();
 
+		/**
+		 * List of recently render hooks.
+		 *
+		 * @since  1.0
+		 * @access private
+		 * @var array array of hooks
+		 */
 		private $recent_hooks = array();
 
+		/**
+		 * List of ignore hooks.
+		 *
+		 * @since  1.0
+		 * @access private
+		 * @var array array of hooks
+		 */
 		private $ignore_hooks = array();
 
+		/**
+		 * Instance.
+		 *
+		 * @since  1.0
+		 * @access static
+		 * @var Give_Hook_Helper $instance
+		 */
+		static private $instance;
+
+		/**
+		 * Check hook status.
+		 *
+		 * @since  1.0
+		 * @access static
+		 * @var string $doing
+		 */
 		private $doing = 'collect';
 
 		/**
@@ -45,27 +89,42 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		 */
 		public static function get_instance() {
 
-			static $instance = null;
-
-			if ( null === $instance ) {
-				$instance = new self();
+			if ( null === static::$instance ) {
+				self::$instance = new self();
 			}
 
-			return $instance;
+			return self::$instance;
 		}
 
 
 		/**
-		 * @since 1.0
+		 * Set params.
+		 *
+		 * @since  1.0
+		 * @access public
+		 *
+		 * @return mixed
 		 */
-		public function init() {
+		public function setup_params() {
 
 			// Use this to set any tags known to cause display problems.
 			// Will be display in sidebar.
 			$this->ignore_hooks = apply_filters( 'ghh_ignore_hooks', array() );
 
+			return self::$instance;
+		}
+
+
+		/**
+		 * Setup hooks
+		 *
+		 * @since  1.0
+		 * @access public
+		 */
+		public function setup_hooks() {
+
 			// Translations
-			add_action( 'plugins_loaded', array( $this, 'load_translation' ) );
+			//add_action( 'plugins_loaded', array( $this, 'load_translation' ) );
 
 			// Init
 			add_action( 'init', array( $this, 'wp_init' ) );
@@ -135,12 +194,12 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 			if ( $this->status == "show-filter-hooks" ) {
 
-				$title = 'Hide Action & Filter Hooks';
+				$title = __( 'Hide Action & Filter Hooks', 'give-hook-helper' );
 				$href  = '?ghh-hooks=off';
 				$css   = 'ghh-hooks-on ghh-hooks-sidebar';
 			} else {
 
-				$title = 'Show Action & Filter Hooks';
+				$title = __( 'Show Action & Filter Hooks', 'give-hook-helper' );
 				$href  = '?ghh-hooks=show-filter-hooks';
 				$css   = '';
 			}
@@ -202,6 +261,7 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 			// Top Admin Bar
 			add_action( 'admin_bar_menu', array( $this, 'admin_bar_menu' ), 90 );
+
 			// Top Admin Bar Styles
 			add_action( 'wp_print_styles', array( $this, 'add_builder_edit_button_css' ) );
 			add_action( 'admin_print_styles', array( $this, 'add_builder_edit_button_css' ) );
@@ -229,19 +289,9 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			global $wp_scripts, $current_screen;
 
 			// Main Styles
-			wp_register_style( 'ghh-main-css', plugins_url( basename( plugin_dir_path( __FILE__ ) ) . '/assets/css/ghh-main.css', basename( __FILE__ ) ), '', '1.1.0', 'screen' );
+			wp_register_style( 'ghh-main-css', plugins_url( basename( plugin_dir_path( __FILE__ ) ) . '/assets/css/ghh-main.css', basename( __FILE__ ) ), '', '1.0', 'screen' );
 			wp_enqueue_style( 'ghh-main-css' );
 
-			// Main Scripts
-			/*
-			wp_register_script( 'ghh-main-js', plugins_url( basename( plugin_dir_path( __FILE__ ) ) . '/assets/js/ghh-main.js', basename( __FILE__ ) ), array('jquery'), '1.1.0' );
-			wp_enqueue_script( 'ghh-main-js' );
-			wp_localize_script('ghh-main-js', 'ghh-main-js', array(
-				'home_url' => get_home_url(),
-				'admin_url' => admin_url(),
-				'ajaxurl' => admin_url('admin-ajax.php')
-			));
-			*/
 		}
 
 		/**
@@ -345,10 +395,14 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		}
 
 		/**
-		 *
 		 * Render action
+		 *
+		 * @since  1.0
+		 * @access public
+		 *
+		 * @param array $args
 		 */
-		function render_action( $args = array() ) {
+		public function render_action( $args = array() ) {
 			if ( false === $this->is_give_plugin_hooks( $args ) ) {
 				return;
 			}
@@ -365,164 +419,19 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 					$nested_hooks_count += count( $value );
 				}
 			}
-			?>
-			<span style="display:none;" class="ghh-hook ghh-hook-<?php echo $args['type'] ?> <?php echo ( $nested_hooks ) ? 'ghh-hook-has-hooks' : ''; ?>">
-			
-			<?php
-			if ( 'action' == $args['type'] ) {
-				?>
-				<span class="ghh-hook-type ghh-hook-type">A</span>
-				<?php
-			} else if ( 'filter' == $args['type'] ) {
-				?>
-				<span class="ghh-hook-type ghh-hook-type">F</span>
-				<?php
-			}
-			?>
 
-				<?php
 
-				// Main - Write the action hook name.
-				//echo esc_html( $args['ID'] );
-				echo $args['ID'];
-
-				// @TODO - Caller function testing.
-				if ( isset( $extra_data[1] ) && false !== $extra_data[1] ) {
-					foreach ( $extra_data as $extra_data_key => $extra_data_value ) {
-						echo '<br />';
-						echo $extra_data_value['function'];
-					}
-				}
-
-				// Write the count number if any function are hooked.
-				if ( $nested_hooks_count ) {
-					?>
-					<span class="ghh-hook-count">
-					<?php echo $nested_hooks_count ?>
-				</span>
-					<?php
-				}
-
-				// Write out list of all the function hooked to an action.
-				if ( isset( $wp_filter[ $args['ID'] ] ) ):
-
-					$nested_hooks = $wp_filter[ $args['ID'] ];
-
-					if ( $nested_hooks ):
-						?>
-						<ul class="ghh-hook-dropdown">
-						
-						<li class="ghh-hook-heading">
-							<strong><?php echo $args['type'] ?>:</strong> <?php echo $args['ID']; ?>
-						</li>
-
-							<?php
-							foreach ( $nested_hooks as $nested_key => $nested_value ) :
-
-								// Show the priority number if the following hooked functions
-								?>
-								<li class="ghh-priority">
-								<span class="ghh-priority-label"><strong><?php echo 'Priority:'; /* _e('Priority', 'give-hook-helper') */ ?></strong> <?php echo $nested_key ?></span>
-							</li>
-							<?php
-
-								foreach ( $nested_value as $nested_inner_key => $nested_inner_value ) :
-
-									// Show all teh functions hooked to this priority of this hook
-									?>
-									<li>
-									<?php
-									if ( $nested_inner_value['function'] && is_array( $nested_inner_value['function'] ) && count( $nested_inner_value['function'] ) > 1 ):
-
-										// Hooked function ( of type object->method() )
-										?>
-										<span class="ghh-function-string">
-											<?php
-											$classname = false;
-
-											if ( is_object( $nested_inner_value['function'][0] ) || is_string( $nested_inner_value['function'][0] ) ) {
-
-											if ( is_object( $nested_inner_value['function'][0] ) ) {
-												$classname = get_class( $nested_inner_value['function'][0] );
-											}
-
-											if ( is_string( $nested_inner_value['function'][0] ) ) {
-												$classname = $nested_inner_value['function'][0];
-											}
-
-											if ( $classname ) {
-											?><?php echo $classname ?>&ndash;&gt;<?php
-											}
-											}
-											?><?php echo $nested_inner_value['function'][1] ?>
-										</span>
-										<?php
-									else :
-
-										// Hooked function ( of type function() )
-										?>
-										<span class="ghh-function-string">
-											<?php echo $nested_inner_key ?>
-										</span>
-										<?php
-									endif;
-									?>
-									
-								</li>
-									<?php
-
-								endforeach;
-
-							endforeach;
-							?>
-						
-					</ul>
-						<?php
-					endif;
-
-				endif;
-				?>
-		</span>
-			<?php
+			include 'view/action-html.php';
 		}
 
-		/*
+		/**
 		 * Filter Hooks Panel
+		 *
+		 * @since 1.0
+		 * @acees public
 		 */
-		function filter_hooks_panel() {
-
-			global $wp_filter, $wp_actions;
-
-			?>
-			<div class="ghh-nested-hooks-block <?php echo ( 'show-filter-hooks' == $this->status ) ? 'ghh-active' : ''; ?> ">
-				<?php
-				foreach ( $this->all_hooks as $va_nested_value ) {
-
-					if ( false === $this->is_give_plugin_hooks( $va_nested_value ) ) {
-						continue;
-					}
-
-					if ( 'action' == $va_nested_value['type'] || 'filter' == $va_nested_value['type'] ) {
-						$this->render_action( $va_nested_value );
-					} else {
-						?>
-						<div class="ghh-collection-divider">
-							<?php echo $va_nested_value['ID'] ?>
-						</div>
-						<?php
-					}
-
-					/*
-					?>
-					<div class="va-action">
-						<?php echo $va_nested_value ?>
-					</div>
-					<?php
-					*/
-				}
-				?>
-			</div>
-			<?php
+		public function filter_hooks_panel() {
+			include 'view/filters-panel-html.php';
 		}
 
 		/**
@@ -541,6 +450,8 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 	}
 
-	Give_Hook_Helper::get_instance()->init();
+	Give_Hook_Helper::get_instance()
+	                ->setup_params()
+	                ->setup_hooks();
 
 endif;
