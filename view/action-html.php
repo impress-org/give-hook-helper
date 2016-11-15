@@ -1,4 +1,4 @@
-<span style="display:none;" class="ghh-hook ghh-hook-<?php echo $args['type'] ?> <?php echo ( $nested_hooks ) ? 'ghh-hook-has-hooks' : ''; ?>">
+<span style="display:none;<?php echo ( isset( $this->deprecated_hooks[ $args['ID'] ] ) ) ? 'background:orange!important;' : ''; ?>" class="ghh-hook ghh-hook-<?php echo $args['type'] ?><?php echo ( $nested_hooks ) ? ' ghh-hook-has-hooks' : ''; ?>">
 
 	<?php if ( 'action' == $args['type'] ) : ?>
 		<span class="ghh-hook-type"><?php _e( 'A', 'give-hook-helper' ); ?></span>
@@ -37,12 +37,12 @@
 				<li class="ghh-hook-heading">
 					<strong><?php echo $args['type'] ?>:</strong>&nbsp;<?php echo $args['ID']; ?>
 
-					<?php if ( isset( $this->deprecated_action_hooks[ $args['ID'] ] ) ) : ?>
+					<?php if ( isset( $this->new_hooks[ $args['ID'] ] ) ) : ?>
 						<br><strong><?php _e( 'deprecated hook name', 'give-hook-helper' ) ?>
-							:</strong>&nbsp;<?php echo $this->deprecated_action_hooks[ $args['ID'] ]; ?>
-					<?php elseif ( isset( $this->deprecated_filter_hooks[ $args['ID'] ] ) ) : ?>
-						<br><strong><?php _e( 'deprecated hook name', 'give-hook-helper' ) ?>
-							:</strong>&nbsp;<?php echo $this->deprecated_filter_hooks[ $args['ID'] ]; ?>
+							:</strong>&nbsp;<?php echo $this->new_hooks[ $args['ID'] ]; ?>
+					<?php elseif ( isset( $this->deprecated_hooks[ $args['ID'] ] ) ) : ?>
+						<br><strong><?php _e( 'new hook name', 'give-hook-helper' ) ?>
+							:</strong>&nbsp;<?php echo $this->deprecated_hooks[ $args['ID'] ]; ?>
 					<?php endif; ?>
 				</li>
 

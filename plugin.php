@@ -76,22 +76,22 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 		private $doing = 'collect';
 
 		/**
-		 * List of deprecated action hooks.
+		 * List of deprecated  hooks.
 		 *
 		 * @since  1.0
 		 * @access private
 		 * @var array array of hooks
 		 */
-		private $deprecated_action_hooks = array();
+		private $deprecated_hooks = array();
 
 		/**
-		 * List of deprecated filter hooks.
+		 * List of new hooks.
 		 *
 		 * @since  1.0
 		 * @access private
 		 * @var array array of hooks
 		 */
-		private $deprecated_filter_hooks = array();
+		private $new_hooks = array();
 
 		/**
 		 * Construct and initialize the main plugin class
@@ -130,14 +130,16 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 			$this->ignore_hooks = apply_filters( 'ghh_ignore_hooks', array() );
 
 			// List of deprecated action hooks.
-			if( function_exists( 'give_deprecated_actions' ) ) {
-				$this->deprecated_action_hooks = give_deprecated_actions();
+			if ( function_exists( 'give_deprecated_actions' ) ) {
+				$this->new_hooks = give_deprecated_actions();
 			}
 
 			// List of deprecated filter hooks.
-			if( function_exists( 'give_deprecated_filters' ) ) {
-				$this->deprecated_filter_hooks = give_deprecated_filters();
+			if ( function_exists( 'give_deprecated_filters' ) ) {
+				$this->new_hooks = array_merge( $this->new_hooks, give_deprecated_filters() );
 			}
+
+			$this->deprecated_hooks = array_flip( $this->new_hooks );
 
 			return self::$instance;
 		}
@@ -478,7 +480,6 @@ if ( ! class_exists( 'Give_Hook_Helper' ) ) :
 
 			return strpos( $hook_name, 'give_' );
 		}
-
 	}
 endif;
 
