@@ -487,7 +487,7 @@ endif;
  */
 function give_hook_helper_init() {
 	// Bailout: Check if Give plugin is activae or not.
-	if ( ! class_exists( 'Give' ) ) {
+	if ( ! class_exists( 'Give' ) || class_exists( 'CX_Simply_Show_Hooks' ) ) {
 		return;
 	}
 
